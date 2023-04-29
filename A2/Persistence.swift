@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 struct PersistenceHandler {
-    static let shared = PersistenceHandler() //Static so that we can always access through context
+    static let shared: PersistenceHandler = PersistenceHandler() //Static so that we can always access through context
     let container:NSPersistentContainer
 
     init() {

@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct A2App: App {
-    var model = PersistenceHandler.shared //To allow access to the context
+    var model = PersistenceHandler.shared
     var body: some Scene {
         WindowGroup {
             ContentView().environment(\.managedObjectContext, model.container.viewContext)

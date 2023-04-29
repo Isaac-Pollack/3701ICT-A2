@@ -41,7 +41,7 @@ extension Animal {
         }
     }
     var rowDisplay:String {
-        "Name: \(self.strName) (age: \(self.strAge))"
+        "\(self.strName) age: \(self.strAge)"
     }
     func getImage() async ->Image {
         guard let url = self.imgurl else {return defaultImage}

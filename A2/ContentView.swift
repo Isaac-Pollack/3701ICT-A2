@@ -11,6 +11,7 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) var ctx
     @FetchRequest(sortDescriptors: []) var animals : FetchedResults<Animal>
+
     var body: some View {
         NavigationView {
             VStack{

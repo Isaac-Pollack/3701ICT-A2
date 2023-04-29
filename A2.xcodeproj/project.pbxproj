@@ -17,8 +17,8 @@
 		3190FE2229FCD28D0053131F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2129FCD28D0053131F /* DetailView.swift */; };
 		3190FE2429FCD29B0053131F /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2329FCD29B0053131F /* RowView.swift */; };
 		3190FE2629FCD5910053131F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2529FCD5910053131F /* Persistence.swift */; };
-		3190FE2829FCD59F0053131F /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2729FCD59F0053131F /* Model.xcdatamodel */; };
 		3190FE2A29FCD6450053131F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2929FCD6450053131F /* ViewModel.swift */; };
+		3190FE2D29FCD7520053131F /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2B29FCD7520053131F /* Model.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +52,9 @@
 		3190FE2129FCD28D0053131F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		3190FE2329FCD29B0053131F /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
 		3190FE2529FCD5910053131F /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
-		3190FE2729FCD59F0053131F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		3190FE2929FCD6450053131F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		3190FE2C29FCD7520053131F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		3190FE2E29FCDB250053131F /* 3701ICT-A2 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "3701ICT-A2"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,9 +105,10 @@
 		3180AB1729FCA3000068BB10 /* A2 */ = {
 			isa = PBXGroup;
 			children = (
+				3190FE2E29FCDB250053131F /* 3701ICT-A2 */,
 				3180AB1829FCA3000068BB10 /* A2App.swift */,
 				3190FE2529FCD5910053131F /* Persistence.swift */,
-				3190FE2729FCD59F0053131F /* Model.xcdatamodel */,
+				3190FE2B29FCD7520053131F /* Model.xcdatamodeld */,
 				3180AB1A29FCA3000068BB10 /* ContentView.swift */,
 				3190FE2129FCD28D0053131F /* DetailView.swift */,
 				3190FE2329FCD29B0053131F /* RowView.swift */,
@@ -272,13 +274,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3190FE2829FCD59F0053131F /* Model.xcdatamodel in Sources */,
 				3180AB1B29FCA3000068BB10 /* ContentView.swift in Sources */,
 				3190FE2229FCD28D0053131F /* DetailView.swift in Sources */,
 				3190FE2429FCD29B0053131F /* RowView.swift in Sources */,
 				3180AB1929FCA3000068BB10 /* A2App.swift in Sources */,
 				3190FE2629FCD5910053131F /* Persistence.swift in Sources */,
 				3190FE2A29FCD6450053131F /* ViewModel.swift in Sources */,
+				3190FE2D29FCD7520053131F /* Model.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +605,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3190FE2B29FCD7520053131F /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3190FE2C29FCD7520053131F /* Model.xcdatamodel */,
+			);
+			currentVersion = 3190FE2C29FCD7520053131F /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3180AB0D29FCA3000068BB10 /* Project object */;
 }
