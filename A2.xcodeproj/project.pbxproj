@@ -14,12 +14,11 @@
 		3180AB2A29FCA3030068BB10 /* A2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180AB2929FCA3030068BB10 /* A2Tests.swift */; };
 		3180AB3429FCA3030068BB10 /* A2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180AB3329FCA3030068BB10 /* A2UITests.swift */; };
 		3180AB3629FCA3030068BB10 /* A2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180AB3529FCA3030068BB10 /* A2UITestsLaunchTests.swift */; };
-		3180AB4329FCA3D90068BB10 /* ChecklistDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180AB4229FCA3D90068BB10 /* ChecklistDataModel.swift */; };
-		3180AB4529FCA4740068BB10 /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180AB4429FCA4740068BB10 /* EditView.swift */; };
-		3180AB4729FCA4A70068BB10 /* ListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180AB4629FCA4A70068BB10 /* ListView.swift */; };
-		3180AB4F29FCA7720068BB10 /* PersistenceHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180AB4E29FCA7720068BB10 /* PersistenceHandler.swift */; };
 		3190FE2229FCD28D0053131F /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2129FCD28D0053131F /* DetailView.swift */; };
 		3190FE2429FCD29B0053131F /* RowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2329FCD29B0053131F /* RowView.swift */; };
+		3190FE2629FCD5910053131F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2529FCD5910053131F /* Persistence.swift */; };
+		3190FE2829FCD59F0053131F /* Model.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2729FCD59F0053131F /* Model.xcdatamodel */; };
+		3190FE2A29FCD6450053131F /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3190FE2929FCD6450053131F /* ViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,12 +49,11 @@
 		3180AB2F29FCA3030068BB10 /* A2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = A2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3180AB3329FCA3030068BB10 /* A2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A2UITests.swift; sourceTree = "<group>"; };
 		3180AB3529FCA3030068BB10 /* A2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A2UITestsLaunchTests.swift; sourceTree = "<group>"; };
-		3180AB4229FCA3D90068BB10 /* ChecklistDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistDataModel.swift; sourceTree = "<group>"; };
-		3180AB4429FCA4740068BB10 /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
-		3180AB4629FCA4A70068BB10 /* ListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListView.swift; sourceTree = "<group>"; };
-		3180AB4E29FCA7720068BB10 /* PersistenceHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceHandler.swift; sourceTree = "<group>"; };
 		3190FE2129FCD28D0053131F /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		3190FE2329FCD29B0053131F /* RowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RowView.swift; sourceTree = "<group>"; };
+		3190FE2529FCD5910053131F /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		3190FE2729FCD59F0053131F /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		3190FE2929FCD6450053131F /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,13 +105,12 @@
 			isa = PBXGroup;
 			children = (
 				3180AB1829FCA3000068BB10 /* A2App.swift */,
+				3190FE2529FCD5910053131F /* Persistence.swift */,
+				3190FE2729FCD59F0053131F /* Model.xcdatamodel */,
 				3180AB1A29FCA3000068BB10 /* ContentView.swift */,
-				3180AB4229FCA3D90068BB10 /* ChecklistDataModel.swift */,
-				3180AB4429FCA4740068BB10 /* EditView.swift */,
-				3180AB4629FCA4A70068BB10 /* ListView.swift */,
 				3190FE2129FCD28D0053131F /* DetailView.swift */,
 				3190FE2329FCD29B0053131F /* RowView.swift */,
-				3180AB4E29FCA7720068BB10 /* PersistenceHandler.swift */,
+				3190FE2929FCD6450053131F /* ViewModel.swift */,
 				3180AB1C29FCA3030068BB10 /* Assets.xcassets */,
 				3180AB1E29FCA3030068BB10 /* Preview Content */,
 			);
@@ -275,14 +272,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3190FE2829FCD59F0053131F /* Model.xcdatamodel in Sources */,
 				3180AB1B29FCA3000068BB10 /* ContentView.swift in Sources */,
 				3190FE2229FCD28D0053131F /* DetailView.swift in Sources */,
-				3180AB4329FCA3D90068BB10 /* ChecklistDataModel.swift in Sources */,
 				3190FE2429FCD29B0053131F /* RowView.swift in Sources */,
-				3180AB4F29FCA7720068BB10 /* PersistenceHandler.swift in Sources */,
-				3180AB4729FCA4A70068BB10 /* ListView.swift in Sources */,
-				3180AB4529FCA4740068BB10 /* EditView.swift in Sources */,
 				3180AB1929FCA3000068BB10 /* A2App.swift in Sources */,
+				3190FE2629FCD5910053131F /* Persistence.swift in Sources */,
+				3190FE2A29FCD6450053131F /* ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
