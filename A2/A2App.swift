@@ -9,11 +9,10 @@ import SwiftUI
 
 @main
 struct A2App: App {
-    var ph = PH.shared //To allow access to the context
-    @State var model = ChecklistDataModel()
+    var model = PersistenceHandler.shared //To allow access to the context
     var body: some Scene {
         WindowGroup {
-            ContentView(model: $model).environment(\.managedObjectContext, ph.container.viewContext) //remove model: $model when transferring fully to coreData
+            ContentView().environment(\.managedObjectContext, model.container.viewContext)
         }
     }
 }

@@ -6,40 +6,36 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct ContentView: View {
-    @Binding var model: ChecklistDataModel //Our binded model
-    @State var checklistTitle = "My Checklists" //Editable title state
-
+    @Environment(\.managedObjectContext) var ctx
+    @FetchRequest(sortDescriptors: []) var animals : FetchedResults<Animal>
     var body: some View {
-        NavigationView() {
-            VStack {
-                EditView(item: $checklistTitle) //Seperation of concerns
+        NavigationView {
+            VStack{
                 List {
-                    ForEach(model.checklists.enumerated().map { $0 }, id: \.element) { (index, i) in
-                        NavigationLink(destination: ListView(list: $model, count: index)) {
-                            Text(i.name)
-                            // Navlink and display name of each entry, mapped.
+                    ForEach(animals) {
+                        animal in
+                        NavigationLink(destination: DetailView(animal: animal)) {
+                            RowView(animal: animal)
                         }
                     }
-                    .onDelete { indices in
-                        //Delete entry in list
-                        model.checklists.remove(atOffsets: indices)
-                        model.saveChecklists()
-                    }
-                    .onMove { indices, i in
-                        // Moveable anywhere in list, not just hard-coded space (As previous)
-                        model.checklists.move(fromOffsets: indices, toOffset: i)
-                        model.saveChecklists()
-                    }
-                }.navigationTitle(checklistTitle) // Extracted to binding to make editable
-                    .navigationBarItems(leading: EditButton(), trailing: Button("+"){
-                        // Add new item with blank default
-                        model.checklists.append(Checklist(name: "New List", items: [["New Item", "square"]]))
-                    model.saveChecklists()
-                })
-            }
+                }
+                Button("+"){
+                    addAnimal()
+                }
+
+            }.navigationTitle("My animal friends")
+                .onAppear{
+                    print("Number of animals:\(animals.count)")
+                }
         }
-        .padding()
+    }
+    func addAnimal() {
+        let animal = Animal(context: ctx)
+        animal.name = "New Animal"
+        animal.age = 1
+        saveData()
     }
 }
