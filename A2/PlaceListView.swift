@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PlaceListView: View {
+    /// Here we are tracking our changes to our instances of Place, grabbing and displaying each instances picture and name in a VStack, with user friendly thumbnails.
+    /// We sort this list alphabetically.
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)], animation: .default)
     private var places: FetchedResults<Place>
@@ -42,14 +44,15 @@ struct PlaceListView: View {
     }
 }
 
-//Function Storage
 extension PlaceListView {
+    /// This extension is for seperating our functionality to do with CRUD methods on the instances of Place, setting default data on creation of a new instance, and allowing deletion.
     
     private func addPlace() {
         withAnimation {
             let newPlace = Place(context: viewContext)
             newPlace.strName = "New Place"
             newPlace.strUrl = ""
+            newPlace.strDetails = "An interesting description!"
             newPlace.strLatitude = "0.0"
             newPlace.strLongitude = "0.0"
             

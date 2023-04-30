@@ -13,14 +13,24 @@ fileprivate var defaultImage = Image(systemName: "photo").resizable()
 fileprivate var downloadImages: [URL:Image] = [:]
 
 extension Place {
-    //The Places name
-    var strName:String {
+    /// This is what our app is built around; the Place entity in our core data model.
+    /// -
+    /// We extend this to make our retrieval and setting functionality much easier, as well as employing it as an ObservableObject by nature.
+
+    var strName: String {
+        /// Get the Place's name, if nothing exists set it to the built in newValue. This value IS optional.
         get { self.name ?? "unknown" }
         set { self.name = newValue }
     }
     
-    //The Places ImageURL
+    var strDetails: String {
+        /// Get the Place's details, if nothing exists set it to the built in newValue. This value IS optional.
+        get { self.details ?? "unknown" }
+        set { self.details = newValue }
+    }
+    
     var strUrl: String {
+        /// Get the Place's image link and save it as imageURL, if nothing exists set it to the built in newValue. This value IS optional.
         get { self.imageURL?.absoluteString ?? "" }
         set {
             guard let url = URL(string: newValue) else {return}
@@ -28,8 +38,8 @@ extension Place {
         }
     }
     
-    //The Places latitude
     var strLatitude: String {
+        /// Get the Place's latitude, if nothing exists set it to the built in newValue. This value IS optional.
         get { String(format: "%.4f", self.latitude) }
         set {
             guard let lat: Double = Double(newValue), lat <= 90, lat >= -90 else {return}
@@ -37,8 +47,8 @@ extension Place {
         }
     }
     
-    //The Places longitude
     var strLongitude: String {
+        /// Get the Place's longitude and convert it to the correct data type, if nothing exists set it to the built in newValue. This value IS optional.
         get { String(format: "%.4f", self.longitude) }
         set {
             guard let long: Double = Double(newValue), long <= 180, long >= -180 else {return}
@@ -46,8 +56,8 @@ extension Place {
         }
     }
     
-    //Fetch image
     func getImage() async ->Image {
+        /// Asynchronously fetch the image based on the imageURL we set within the var strUrl declaration.
         guard let url = self.imageURL else { return defaultImage }
         if let image = downloadImages[url] { return image }
         do{
@@ -62,9 +72,9 @@ extension Place {
         return defaultImage
     }
     
-    //Save
     @discardableResult
         func save() -> Bool {
+            /// This function attempts to save the results of the edited object.
             do {
                 try managedObjectContext?.save()
             } catch {
