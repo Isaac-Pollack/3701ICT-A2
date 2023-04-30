@@ -27,9 +27,8 @@ struct PlaceListView: View {
             .toolbar {
                 ToolbarItem (placement: .navigationBarTrailing) {
                     EditButton()
-                    Spacer()
                 }
-                ToolbarItem {
+                ToolbarItem (placement: .navigationBarLeading) {
                     Button(action: addPlace) {
                         Label("Add Place", systemImage: "plus")
                     }

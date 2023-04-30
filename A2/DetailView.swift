@@ -42,7 +42,7 @@ struct DetailView: View {
                 Text("Name: " + place.strName)
                 Text("Latitude: " + place.strLatitude)
                 Text("Longitude: " + place.strLongitude)
-                image.frame(width: 40, height: 40).clipShape(Circle())
+                image.resizable().aspectRatio(contentMode: .fit)
             }
         }
         .navigationTitle(place.strName)
