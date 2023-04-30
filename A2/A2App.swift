@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct A2App: App {
-    var model = PersistenceHandler.shared
+    let persistenceHandler = PersistenceHandler.shared
     var body: some Scene {
         WindowGroup {
-            ContentView().environment(\.managedObjectContext, model.container.viewContext)
+            ContentView().environment(\.managedObjectContext, persistenceHandler.container.viewContext)
         }
     }
 }

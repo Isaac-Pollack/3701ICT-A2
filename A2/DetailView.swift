@@ -8,52 +8,46 @@
 import SwiftUI
 
 struct DetailView: View {
-    var animal:Animal
-    @State var name = ""
-    @State var age = ""
-    @State var url = ""
-    @State var isEditing = false
-    @State var image = defaultImage
+    @Environment(\.editMode) var editMode
+    @ObservedObject var place: Place
+    
+    @State var name: String = ""
+    @State var url: String = ""
+    @State var lat: String = ""
+    @State var long: String = ""
+    @State var image = Image(systemName: "photo")
+    
     var body: some View {
-        VStack{
-            if !isEditing {
-                List {
-                    Text("Name: \(name)")
-                    Text("Age: \(age)")
-                    Text("Url: \(url)")
-                }
-            }else {
-                List{
-                    TextField("Name:", text: $name)
-                    TextField("Age:", text: $age)
-                    TextField("Url:", text: $url)
-
-                }
-            }
-            HStack {
-                Button("\(isEditing ? "Confirm" : "Edit")"){
-                    if(isEditing) {
-                        animal.strAge = age
-                        animal.strName = name
-                        animal.strUrl = url
-                        saveData()
-                        Task {
-                            image = await animal.getImage()
-                        }
+        List {
+            if (editMode?.wrappedValue == .active) {
+                TextField("Enter the name of the place:", text: $name)
+                TextField("Enter the latitude of the place:", text: $lat)
+                TextField("Enter the longitude of the place:", text: $long)
+                TextField("Enter the image url of the place:", text: $url)
+                    .onAppear {
+                        name = place.strName
+                        url = place.strUrl
+                        lat = place.strLatitude
+                        long = place.strLongitude
+                }.onDisappear {
+                    if (editMode?.wrappedValue != .active) {
+                        place.strName = name
+                        place.strUrl = url
+                        place.strLatitude = lat
+                        place.strLongitude = long
+                        place.save()
                     }
-                    isEditing.toggle()
                 }
+            } else {
+                Text("Name: " + place.strName)
+                Text("Latitude: " + place.strLatitude)
+                Text("Longitude: " + place.strLongitude)
+                image.frame(width: 40, height: 40).clipShape(Circle())
             }
-            image.scaledToFit().cornerRadius(20).shadow(radius: 20)
         }
-        .navigationTitle("Animal Detail")
-        .onAppear{
-            name = animal.strName
-            age = animal.strAge
-            url = animal.strUrl
-        }
+        .navigationTitle(place.strName)
         .task {
-            await image = animal.getImage()
+            await image = place.getImage()
         }
     }
 }
