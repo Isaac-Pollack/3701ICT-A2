@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  DataModel.swift
 //  A2
 //
 //  Created by Isaac Pollack on 24/4/2023.
@@ -11,7 +11,7 @@ import SwiftUI
 
 let defaultImage = Image(systemName: "photo").resizable()
 var downloadImages :[URL:Image] = [:]
-extension Animal {
+extension Place {
     var strName:String {
         get {
             self.name ?? "unknown"
@@ -20,31 +20,20 @@ extension Animal {
             self.name = newValue
         }
     }
-    var strAge : String {
-        get {
-            "\(self.age)"
-        }
-        set {
-            guard let age = Int16(newValue) else {
-                return
-            }
-            self.age = age
-        }
-    }
     var strUrl: String {
         get{
-            self.imgurl?.absoluteString ?? ""
+            self.imageURL?.absoluteString ?? ""
         }
         set {
             guard let url = URL(string: newValue) else {return}
-            self.imgurl = url
+            self.imageURL = url
         }
     }
     var rowDisplay:String {
-        "\(self.strName) age: \(self.strAge)"
+        "\(self.strName)"
     }
     func getImage() async ->Image {
-        guard let url = self.imgurl else {return defaultImage}
+        guard let url = self.imageURL else {return defaultImage}
         if let image = downloadImages[url] {return image}
         do{
             let (data, _) = try await URLSession.shared.data(from: url)
@@ -59,7 +48,7 @@ extension Animal {
         return defaultImage
     }
 }
-func createInitAnimals() {
+func createInitPlaces() {
     
 }
 func saveData() {
