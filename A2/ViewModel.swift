@@ -84,3 +84,22 @@ extension Place {
             return true
         }
 }
+
+class MyLocation: ObservableObject, Identifiable {
+    @Published var name : String
+    @Published var latitude :Double
+    @Published var longitude : Double
+    init(name: String, latitude: Double, longitude: Double) {
+        self.name = name
+        self.longitude = longitude
+        self.latitude = latitude
+    }
+}
+
+class MyLocations: ObservableObject {
+    @Published var locations: [MyLocation]
+    static let shared = MyLocations(locs: [])
+    init(locs:[MyLocation]) {
+        locations = locs
+    }
+}

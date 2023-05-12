@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		317635422A0EFBB40018CF5A /* LocManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 317635412A0EFBB40018CF5A /* LocManager.swift */; };
 		3180AB1929FCA3000068BB10 /* A2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180AB1829FCA3000068BB10 /* A2App.swift */; };
 		3180AB1B29FCA3000068BB10 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3180AB1A29FCA3000068BB10 /* ContentView.swift */; };
 		3180AB1D29FCA3030068BB10 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3180AB1C29FCA3030068BB10 /* Assets.xcassets */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		317635412A0EFBB40018CF5A /* LocManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocManager.swift; sourceTree = "<group>"; };
 		3180AB1529FCA3000068BB10 /* A2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = A2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3180AB1829FCA3000068BB10 /* A2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = A2App.swift; sourceTree = "<group>"; };
 		3180AB1A29FCA3000068BB10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				3180AB1829FCA3000068BB10 /* A2App.swift */,
 				3190FE2529FCD5910053131F /* Persistence.swift */,
+				317635412A0EFBB40018CF5A /* LocManager.swift */,
 				3190FE2B29FCD7520053131F /* Model.xcdatamodeld */,
 				3180AB1A29FCA3000068BB10 /* ContentView.swift */,
 				3190FE2129FCD28D0053131F /* DetailView.swift */,
@@ -279,6 +282,7 @@
 			files = (
 				3180AB1B29FCA3000068BB10 /* ContentView.swift in Sources */,
 				3190FE2229FCD28D0053131F /* DetailView.swift in Sources */,
+				317635422A0EFBB40018CF5A /* LocManager.swift in Sources */,
 				3190FE3529FDFB2E0053131F /* PlaceListView.swift in Sources */,
 				3190FE2429FCD29B0053131F /* RowView.swift in Sources */,
 				3180AB1929FCA3000068BB10 /* A2App.swift in Sources */,
@@ -446,6 +450,7 @@
 				DEVELOPMENT_TEAM = YN4M4C7LS6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app would like to know your location for the map feature";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -476,6 +481,7 @@
 				DEVELOPMENT_TEAM = YN4M4C7LS6;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "The app would like to know your location for the map feature";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
