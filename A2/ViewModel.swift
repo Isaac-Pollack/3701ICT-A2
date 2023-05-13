@@ -8,6 +8,7 @@
 import Foundation 
 import CoreData
 import SwiftUI
+import MapKit
 
 fileprivate var defaultImage = Image(systemName: "photo").resizable()
 fileprivate var downloadImages: [URL:Image] = [:]
@@ -16,7 +17,7 @@ extension Place {
     /// This is what our app is built around; the Place entity in our core data model.
     /// -
     /// We extend this to make our retrieval and setting functionality much easier, as well as employing it as an ObservableObject by nature.
-
+    
     var strName: String {
         /// Get the Place's name, if nothing exists set it to the built in newValue. This value IS optional.
         get { self.name ?? "unknown" }
@@ -73,16 +74,16 @@ extension Place {
     }
     
     @discardableResult
-        func save() -> Bool {
-            /// This function attempts to save the results of the edited object.
-            do {
-                try managedObjectContext?.save()
-            } catch {
-                print("Error saving \(error)")
-                return false
-            }
-            return true
+    func save() -> Bool {
+        /// This function attempts to save the results of the edited object.
+        do {
+            try managedObjectContext?.save()
+        } catch {
+            print("Error saving \(error)")
+            return false
         }
+        return true
+    }
 }
 
 class MyLocation: ObservableObject, Identifiable {
@@ -93,13 +94,5 @@ class MyLocation: ObservableObject, Identifiable {
         self.name = name
         self.longitude = longitude
         self.latitude = latitude
-    }
-}
-
-class MyLocations: ObservableObject {
-    @Published var locations: [MyLocation]
-    static let shared = MyLocations(locs: [])
-    init(locs:[MyLocation]) {
-        locations = locs
     }
 }

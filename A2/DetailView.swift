@@ -12,8 +12,9 @@ struct DetailView: View {
     /// Here we are visualising the specific data for one instance of Place, and whether we are in edit mode. We also asynchronously request the image value saved to it.
     @Environment(\.editMode) var editMode
     @ObservedObject var place: Place
-    
     @StateObject var manager = LocManager()
+    
+    //Object States
     @State var name: String = ""
     @State var details: String = ""
     @State var url: String = ""
@@ -35,23 +36,30 @@ struct DetailView: View {
                         url = place.strUrl
                         lat = place.strLatitude
                         long = place.strLongitude
-                }.onDisappear {
-                    if (editMode?.wrappedValue != .active) {
-                        place.strName = name
-                        place.strDetails = details
-                        place.strUrl = url
-                        place.strLatitude = lat
-                        place.strLongitude = long
-                        place.save()
+                    }.onDisappear {
+                        if (editMode?.wrappedValue != .active) {
+                            place.strName = name
+                            place.strDetails = details
+                            place.strUrl = url
+                            place.strLatitude = lat
+                            place.strLongitude = long
+                            place.save()
+                        }
                     }
-                }
             } else {
                 image.resizable().aspectRatio(contentMode: .fit)
-                Map(coordinateRegion: $manager.region, showsUserLocation: true).aspectRatio(contentMode: .fit)
-                Text("Map of " + place.strName)
                 Text(place.strDetails)
                 Text("Latitude: " + place.strLatitude)
                 Text("Longitude: " + place.strLongitude)
+                NavigationLink {
+                    MapView(place: place)
+                        .navigationBarItems(leading: EditButton())
+                } label: {
+                    HStack{
+                        Map(coordinateRegion: $manager.region, showsUserLocation: true).frame(width: 40, height: 40)
+                        Text("Map of \(place.strName)")
+                    }
+                }
             }
         }
         .navigationTitle(place.strName)

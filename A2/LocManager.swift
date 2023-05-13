@@ -2,7 +2,7 @@
 //  LocManager.swift
 //  A2
 //
-//  Created by Isaac Pollack on 12/5/2023.
+//  Created by Isaac Pollack on 13/5/2023.
 //
 
 import Foundation
@@ -10,6 +10,7 @@ import MapKit
 import CoreLocation
 import SwiftUI
 
+// MAPPING
 let delta = 10.0
 class LocManager: NSObject, CLLocationManagerDelegate, ObservableObject {
 
@@ -35,14 +36,8 @@ class LocManager: NSObject, CLLocationManagerDelegate, ObservableObject {
     }
 }
 
-extension MyLocations {
-    func addNewLocation(_ name:String, _ lat: Double, _ lon: Double){
-        self.locations.append(MyLocation(name: name, latitude: lat, longitude: lon))
-    }
-}
-
 extension MyLocation {
-    var cood: CLLocationCoordinate2D {
+    var coord: CLLocationCoordinate2D {
         CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
     
