@@ -1,35 +1,110 @@
-//
-//  A2Tests.swift
-//  A2Tests
-//
-//  Created by Liliana Barnard on 29/4/2023.
-//
-
 import XCTest
+import CoreData
 @testable import A2
 
-final class A2Tests: XCTestCase {
+class A2Tests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    var persistenceHandler: PersistenceHandler!
+    var viewContext: NSManagedObjectContext!
+
+    override func setUp() {
+        super.setUp()
+        persistenceHandler = PersistenceHandler.shared
+        viewContext = persistenceHandler.container.viewContext
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    override func tearDown() {
+        super.tearDown()
+        // Clean up any created test data
+        deleteAllPlaces()
     }
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
+    func testAddPlace() {
+        let placeName = "Test Place"
+        let placeLatitude = "37.7749"
+        let placeLongitude = "-122.4194"
+        
+        // Create a new place
+        let newPlace = Place(context: viewContext)
+        newPlace.strName = placeName
+        newPlace.strLatitude = placeLatitude
+        newPlace.strLongitude = placeLongitude
+        
+        // Save the context
+        XCTAssertTrue(saveContext(), "Failed to save the context")
+        
+        // Fetch all places
+        let places = fetchAllPlaces()
+        
+        // Verify that the new place is added
+        XCTAssertEqual(places.count, 1, "Unexpected number of places")
+        XCTAssertEqual(places.first?.strName, placeName, "Unexpected place name")
+        XCTAssertEqual(places.first?.strLatitude, placeLatitude, "Unexpected place latitude")
+        XCTAssertEqual(places.first?.strLongitude, placeLongitude, "Unexpected place longitude")
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    
+    func testDeletePlace() {
+        // Create a test place
+        let place = Place(context: viewContext)
+        place.strName = "Test Place"
+        place.strLatitude = "37.7749"
+        place.strLongitude = "-122.4194"
+        XCTAssertTrue(saveContext(), "Failed to save the context")
+        
+        // Fetch all places
+        var places = fetchAllPlaces()
+        XCTAssertEqual(places.count, 1, "Unexpected number of places before deletion")
+        
+        // Delete the test place
+        viewContext.delete(place)
+        XCTAssertTrue(saveContext(), "Failed to save the context")
+        
+        // Fetch all places after deletion
+        places = fetchAllPlaces()
+        XCTAssertEqual(places.count, 0, "Unexpected number of places after deletion")
+    }
+    
+    func testPlaceListView() {
+        let place1 = Place(context: viewContext)
+        place1.strName = "Place 1"
+        place1.strLatitude = "37.7749"
+        place1.strLongitude = "-122.4194"
+        
+        let place2 = Place(context: viewContext)
+        place2.strName = "Place 2"
+        place2.strLatitude = "34.0522"
+        place2.strLongitude = "-118.2437"
+        
+        XCTAssertTrue(saveContext(), "Failed to save the context")
+    }
+    
+    // Helper methods
+    
+    func deleteAllPlaces() {
+        let fetchRequest: NSFetchRequest<Place> = Place.fetchRequest()
+        if let places = try? viewContext.fetch(fetchRequest) {
+            places.forEach { place in
+                viewContext.delete(place)
+            }
+            _ = saveContext()
+        }
+    }
+    
+    func fetchAllPlaces() -> [Place] {
+        let fetchRequest: NSFetchRequest<Place> = Place.fetchRequest()
+        if let places = try? viewContext.fetch(fetchRequest) {
+            return places
+        }
+        return []
+    }
+    
+    @discardableResult
+    func saveContext() -> Bool {
+        do {
+            try viewContext.save()
+            return true
+        } catch {
+            return false
         }
     }
 
