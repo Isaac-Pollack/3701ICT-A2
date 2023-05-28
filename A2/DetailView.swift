@@ -13,7 +13,7 @@ struct DetailView: View {
     @Environment(\.editMode) var editMode
     @ObservedObject var place: Place
     @StateObject var manager = LocManager()
-    
+
     //Object States
     @State var name: String = ""
     @State var details: String = ""
@@ -21,7 +21,7 @@ struct DetailView: View {
     @State var lat: String = ""
     @State var long: String = ""
     @State var image = Image(systemName: "photo")
-    
+
     var body: some View {
         List {
             if (editMode?.wrappedValue == .active) {
@@ -68,3 +68,17 @@ struct DetailView: View {
         }
     }
 }
+
+/// The DetailView struct represents a view that displays detailed information about a specific place.
+/// The @Environment(\.editMode) property wrapper allows accessing the edit mode environment variable.
+/// The @ObservedObject property wrapper is used to observe changes to the place object.
+/// The @StateObject property wrapper is used for the manager object, which manages the map's coordinate region.
+/// The view contains several state properties (name, details, url, lat, long, image) to store the edited values and the asynchronously fetched image.
+/// Inside the List, the content is conditionally displayed based on the edit mode.
+/// When the edit mode is active, several TextField views allow the user to edit the place's properties.
+/// When the edit mode is not active, the place's image, details, latitude, and longitude are displayed.
+/// The navigation link takes the user to the MapView for the place, with the navigation bar button item to enable editing.
+/// The navigationTitle is set to the name of the place.
+/// The .task modifier asynchronously fetches the image for the place using the getImage() method of the Place object.
+
+/// Overall, this code sets up a view that displays detailed information about a place, allows editing the place's properties in edit mode, displays the place's image, details, latitude, and longitude in non-edit mode, and provides navigation to the map view for the place.

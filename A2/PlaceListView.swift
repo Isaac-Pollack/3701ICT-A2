@@ -13,7 +13,7 @@ struct PlaceListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(sortDescriptors: [NSSortDescriptor(key: "name", ascending: true)], animation: .default)
     private var places: FetchedResults<Place>
-    
+
     var body: some View {
         VStack {
             List {
@@ -46,7 +46,7 @@ struct PlaceListView: View {
 
 extension PlaceListView {
     /// This extension is for seperating our functionality to do with CRUD methods on the instances of Place, setting default data on creation of a new instance, and allowing deletion.
-    
+
     private func addPlace() {
         withAnimation {
             let newPlace = Place(context: viewContext)
@@ -55,7 +55,7 @@ extension PlaceListView {
             newPlace.strDetails = "An interesting description!"
             newPlace.strLatitude = "0.0"
             newPlace.strLongitude = "0.0"
-            
+
             do {
                 try viewContext.save()
             } catch {
@@ -64,7 +64,7 @@ extension PlaceListView {
             }
         }
     }
-    
+
     private func deletePlace(offsets: IndexSet) {
         withAnimation {
             offsets.map { places[$0] }.forEach (viewContext.delete)
@@ -77,3 +77,17 @@ extension PlaceListView {
         }
     }
 }
+
+/// The PlaceListView struct represents a view that displays a list of favorite places.
+/// The places property is fetched from Core Data using FetchRequest and sorted in ascending order by the name.
+/// The body property defines the content of the view.
+/// Inside the VStack, there's a List that iterates over the fetched places and displays each place using a NavigationLink wrapped in a RowView.
+/// The onDelete modifier is added to enable deleting places from the list.
+/// The toolbar items (EditButton and "Add Place" button) are added using the .toolbar modifier.
+/// The Text view at the bottom displays a message when no place is selected.
+/// The navigation title is set to "Favorite Places" using the navigationTitle modifier.
+/// The .onAppear modifier is used to print the number of places when the view appears.
+/// The addPlace function adds a new place to Core Data with default values.
+/// The deletePlace function deletes the selected places from Core Data and saves the context.
+
+/// Overall, this code sets up a view that displays a list of favorite places, allows adding and deleting places, and handles the navigation to the detail view.

@@ -5,7 +5,7 @@
 //  Created by Isaac Pollack on 24/4/2023.
 //
 
-import Foundation 
+import Foundation
 import CoreData
 import SwiftUI
 import MapKit
@@ -17,19 +17,19 @@ extension Place {
     /// This is what our app is built around; the Place entity in our core data model.
     /// -
     /// We extend this to make our retrieval and setting functionality much easier, as well as employing it as an ObservableObject by nature.
-    
+
     var strName: String {
         /// Get the Place's name, if nothing exists set it to the built in newValue. This value IS optional.
         get { self.name ?? "unknown" }
         set { self.name = newValue }
     }
-    
+
     var strDetails: String {
         /// Get the Place's details, if nothing exists set it to the built in newValue. This value IS optional.
         get { self.details ?? "unknown" }
         set { self.details = newValue }
     }
-    
+
     var strUrl: String {
         /// Get the Place's image link and save it as imageURL, if nothing exists set it to the built in newValue. This value IS optional.
         get { self.imageURL?.absoluteString ?? "" }
@@ -38,7 +38,7 @@ extension Place {
             self.imageURL = url
         }
     }
-    
+
     var strLatitude: String {
         /// Get the Place's latitude, if nothing exists set it to the built in newValue. This value IS optional.
         get { String(format: "%.4f", self.latitude) }
@@ -47,7 +47,7 @@ extension Place {
             latitude = lat
         }
     }
-    
+
     var strLongitude: String {
         /// Get the Place's longitude and convert it to the correct data type, if nothing exists set it to the built in newValue. This value IS optional.
         get { String(format: "%.4f", self.longitude) }
@@ -56,7 +56,7 @@ extension Place {
             longitude = long
         }
     }
-    
+
     func getImage() async ->Image {
         /// Asynchronously fetch the image based on the imageURL we set within the var strUrl declaration.
         guard let url = self.imageURL else { return defaultImage }
@@ -72,7 +72,7 @@ extension Place {
         }
         return defaultImage
     }
-    
+
     @discardableResult
     func save() -> Bool {
         /// This function attempts to save the results of the edited object.
@@ -96,3 +96,14 @@ class MyLocation: ObservableObject, Identifiable {
         self.latitude = latitude
     }
 }
+
+/// strName: Retrieves and sets the name of the place, using a default value if it's not set.
+/// strDetails: Retrieves and sets the details of the place, using a default value if it's not set.
+/// strUrl: Retrieves and sets the image URL of the place, using an empty string if it's not set. It also converts the URL string to a valid URL object when setting the value.
+/// strLatitude: Retrieves and sets the latitude of the place, formatting it to a string with four decimal places. It performs validation when setting the value to ensure it falls within the valid latitude range.
+/// strLongitude: Retrieves and sets the longitude of the place, formatting it to a string with four decimal places. It performs validation when setting the value to ensure it falls within the valid longitude range.
+/// updateRegion: Updates the provided MKCoordinateRegion object with the coordinates of the place.
+/// getImage: Asynchronously fetches the image associated with the place based on the stored imageURL. It uses a dictionary (downloadImages) to cache downloaded images and returns a default image if the download fails.
+/// save: Attempts to save the edited object to Core Data, returning a boolean indicating the success of the save operation.
+
+/// These extensions provide convenient functionality for retrieving and setting properties of the Place entity, as well as handling image fetching and saving operations.
